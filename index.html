@@ -286,8 +286,8 @@
         <label>Message (optionnel)</label>
         <textarea placeholder="Décrivez votre besoin..."></textarea>
       </div>
-      <a href="tel:+22788782989" class="btn-primary" style="display:block;text-align:center;width:100%;">
-        📞 Appeler maintenant — 88 78 29 89
+      <a id="whatsapp-btn" href="https://wa.me/88782989" class="btn-primary" onclick="envoyerWhatsapp()" style="display:block;text-align:center;width:100%;">
+    💬 Envoyer sur WhatsApp
       </a>
     </div>
   </div>
@@ -300,7 +300,7 @@
 </footer>
 
 <script>
-  // Intersection observer for fade-in animations
+  // Intersection observer for fade-in animations (ancien script - gardez-le)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -311,6 +311,24 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nouveau script WhatsApp
+  function envoyerWhatsapp() {
+    const nom = document.querySelector('input[placeholder="Ex: Moussa Diallo"]').value;
+    const tel = document.querySelector('input[placeholder="+227 XX XX XX XX"]').value;
+    const service = document.querySelector('select').value;
+    const message = document.querySelector('textarea').value;
+
+    const texte = `Bonjour Pôle Tech ! 👋
+
+🧑 Nom : ${nom}
+📞 Téléphone : ${tel}
+🛠️ Service : ${service}
+💬 Message : ${message}`;
+
+    const url = `https://wa.me/22788782989?text=${encodeURIComponent(texte)}`;
+    window.open(url, '_blank');
+  }
 </script>
 
 </body>
